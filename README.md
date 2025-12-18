@@ -38,6 +38,8 @@ cd ..
 
 2. Modify "dataPath" in cifar10_resnet20.hocon to the real dataset path (for construct the test dataloader).
 
-3. Modify "generateDataPath" and ""generateLabelPath" in cifar10_resnet20.hocon to the data_path and label_path you just generate from Stage1.
+3. Modify "generateDataPath" and "generateLabelPath" in cifar10_resnet20.hocon to the prefixes of the generated pickle shards from Stage1. `main_direct.py` loads four groups named `<generateDataPath>{1..4}.pickle` and `<generateLabelPath>{1..4}.pickle`, so point these fields to the common prefix (ending in `_group`) that comes before the group index.
 
-4. Use the commands in run.sh to train the quantized network. Please note that the model that generates the data and the quantized model should be the same.
+4. Place the Stage1 synthetic/OOD shards where the paths above resolve. CIFAR variants apply 32×32 random resized crops with horizontal flips, while ImageNet/other datasets apply 224×224 crops and flips when reading these shards.
+
+5. Use the commands in run.sh to train the quantized network. Please note that the model that generates the data and the quantized model should be the same.

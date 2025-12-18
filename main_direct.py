@@ -105,6 +105,15 @@ class Generator_imagenet(nn.Module):
 		return img
 
 class direct_dataset(Dataset):
+	"""Load synthetic shards produced in Stage1 for direct training.
+
+	The loader expects four shards for both data and labels, each stored as a
+	pickle file. `generateDataPath` and `generateLabelPath` should be set to the
+	prefix before the shard index; file names are resolved as
+	``f"{generateDataPath}{i}.pickle"`` and ``f"{generateLabelPath}{i}.pickle"``
+	for i in 1..4. CIFAR datasets apply 32×32 crops and flips, while other
+	datasets use 224×224 crops and flips.
+	"""
 	def __init__(self, settings, logger, dataset):
 		self.settings = settings
 		self.logger = logger
