@@ -2,6 +2,8 @@
 model_name = resnet20_cifar100
 generateDataPath = "./data/cifar100/resnet20_cifar100_refined_gaussian_hardsample_beta10.0_gamma2.0_group"
 generateLabelPath = "./data/cifar100/resnet20_cifar100_labels_hardsample_beta10.0_gamma2.0_group"
+# The loader appends {1..4}.pickle to the two prefixes above. Ensure four shards
+# named *_group1.pickle ... *_group4.pickle sit at these locations before training.
 dataPath = "/mnt/cephfs/home/lihuantong/code/vgg_fuseBN/data/"
 dataset = "cifar100" # options: imagenet | cifar100
 
