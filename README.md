@@ -16,6 +16,14 @@ cd data_generate
 ```
 "--save_path_head" in **run_generate_cifar10.sh/run_generate_imagenet.sh** is the path where you want to save your generated data pickle.
 
+You can also call the generator directly. The script defaults to `--model resnet18`, `--batch_size 32`, `--test_batch_size 128`, `--group 1`, `--beta 1.0`, `--gamma 0.0`, and an empty `--save_path_head` (writes next to the script). For example:
+
+```
+python generate_data.py --model resnet18 --batch_size 32 --group 1 --beta 1.0 --gamma 0.0 --save_path_head ./generated/
+```
+
+Outputs are pickled shards named `<save_path_head>/<model>_refined_gaussian_hardsample_beta<beta>_gamma<gamma>_group<group>.pickle` and `<save_path_head>/<model>_labels_hardsample_beta<beta>_gamma<gamma>_group<group>.pickle`, ready for the Stage2 configuration paths.
+
 ```
 bash run_generate_cifar10.sh
 ```
